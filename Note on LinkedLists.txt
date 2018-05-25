@@ -1,0 +1,23 @@
+Reference: https://dbader.org/blog/python-linked-list
+
+Notes on Linked Lists:
+
+LL similar to arrays --- elements are stored in linear order 
+LL differs from arrays --- arrays have contiguous memory locations (data is tightly packed)/ LL are made of data records linked together by pointers. These can be anywhere in memory but the linear order is through the pointer links. 
+Singly and Doubly LL --- Singly has only next node. Doubly has next and prev, makes it easier for deleting and for traversing in a reverse order.
+Performance comparisons btw arrays and LL 
+--- Element Insertions and Removal: O(1) for LL due to just changing node pointers. 
+--- Element Lookup: LL it is O(N), but for arrays, it is O(1) due to fixed location.
+--- Memory Efficiency: Arrays definitely better than LL.
+		       Static arrays have low mem footprint, because they have a fixed location/ tightly packed/ more space efficient.
+                       Dynamic arrays have higher mem footprint, because they over-allocate space for an array to speed up element insertions in the average case. 
+In Python --- the usual lists --> dynamic arrays
+	  --- tuples ---> static arrays 
+Is there an implementation of LL that we can use? No...we have to write our own implementation. But, Python offers collections.deque for double-ended queue, which can be used as makeshift LL. 
+
+Option 1: Use collections.deque() for using Python built-in class for LL. // see later
+Option 2: Write your own implementations.  
+
+   
+
+

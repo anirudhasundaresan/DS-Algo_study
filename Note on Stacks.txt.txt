@@ -1,0 +1,5 @@
+Stacks: 
+We are talking about stack data structure and not stack as a segment of memory. Stacks can be represented using arrays and linked lists.
+Stack - LIFO. There is restriction on how to store data onto stack. 
+Either push/ pop. Push - Add at top. Pop - Remove from top. 
+A general rule while working with singly linked lists is to maintain a pointer to the head of the LL.

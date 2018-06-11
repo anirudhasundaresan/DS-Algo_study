@@ -1,5 +1,5 @@
 ##  This is to compare different searches and their runtimes.
-
+## Usually in Python, we use the "in" for searching..15 in [1,2,3,15,6,7] returns True.
 ## Linear search -- Worst case: O(n) and best case: Omega(1) if it is the first element. The list need not be sorted.
 def lin_search(key, a):
     for index, i in enumerate(a):

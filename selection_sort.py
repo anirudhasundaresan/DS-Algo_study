@@ -1,4 +1,4 @@
-# To implement selection sort. Same as bubble sort but with more exchanges and same O(N2).
+# To implement selection sort. Same as bubble sort but with lesser exchanges and same O(N2).
 # Iterative procedure
 
 def selection_sort(alist):

@@ -1,5 +1,6 @@
 ##  This is to compare different searches and their runtimes.
 ## Usually in Python, we use the "in" for searching..15 in [1,2,3,15,6,7] returns True.
+
 ## Also note that if the list is ordered and we want to use 'linear search', we need to search for the value just greater than the key since every other value will be greater than key. 
 ## Linear search -- Worst case: O(n) and best case: Omega(1) if it is the first element. The list need not be sorted.
 def lin_search(key, a):
@@ -17,6 +18,7 @@ lin_search(9, lis)
 
 ## Binary search -- Worst case: O(log n) and best case: Omega(1) if the element found is the middle element itself.
 ## Note: the list has to be sorted
+## Binary search can be implemented in a recursive method.
 
 def binary_search(key, a):
     low = 0
@@ -46,3 +48,6 @@ binary_search(100, sort_list)
 
 # Another important note: Don't do sorting just to do binary search. The best sorting algorithms take O(n logn) [which is always slower than a linear search].
 # Also consider a hash table in such situations.
+
+# Derivation of O(log n) for binary search: n/2 elements each time to be searched for...till n/2(power i) = 1.
+# Thus, i = log n

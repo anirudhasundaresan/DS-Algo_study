@@ -22,7 +22,7 @@ def binary_search(key, a):
     low = 0
     high = len(a)-1
     while high >= low:
-        mid = int((high+low)/2.0)
+        mid = int((high+low)/2.0) ## OR use mid = (high + low)//2 
         if a[mid] == key:
             print("Element found at position: ", mid)
             return True

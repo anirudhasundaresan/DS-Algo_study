@@ -1,0 +1,40 @@
+Important points on Python Collection Data-types:
+
+Lists, strings and tuples are ordered collections.
+Sets and Dictionaries - unordered collections. // hence will show that they don't support indexing.
+
+Lists an be initialized with repetition -- *, but be careful if assigning variables to these. Unexpected changes can occur.  
+
+Code: 
+myList = [1,2,3,4]
+A = [myList]*3
+print(A)              //// [[1, 2, 3, 4], [1, 2, 3, 4], [1, 2, 3, 4]]
+myList[2]=45
+print(A)              //// [[1, 2, 45, 4], [1, 2, 45, 4], [1, 2, 45, 4]]
+Answers: 
+ -- The variable A holds a collection of 3 references to the original list called myList. Thus, a change in 1 element of the myList can change A.
+Pop operation returns the popped element.
+(54).__add__(21) adds them - Python library.
+'Range' is not a function, but an object.
+
+Strings are 'sequential collections'. -- .find, .join, .count, .lower and .split methods are most useful
+myName = David
+myName.find('v') # note: first occurence
+2
+myName.split('v')
+['Da', 'id']  
+
+Main difference between lists and strings? :
+Lists are mutable. Changeable. Any index can be used to store something else. Strings are immutable, no item assignment in the middle of the string. Think of a physical string, can you cut out a portion and join the string 
+with another similar sized portion the same way? 
+
+What about tuples? They are similar to lists in terms of being able to store heterogeneous objects but they are *immutable*. They support slicing, but no item assignment.
+
+Set?: Unordered collection of 0 or more immutable objects. Use {}. Even dict is used with {}. Use {} to mean unordered? 
+Operations of set are useful to note: &, |, -, <=, in, len.
+aset <= otherset : Asks whether all elements of aset are in otherset.
+Some more mathematical set functions: union, intersection, issubset, clear, add (instead of append because of no ordering), remove, difference, pop - removes arbitrary item.
+
+Dictionary? : uses {}. Use methods and operators as follows:
+adict.keys(), .values(), .items() -- returns a dict_item object, and use list() to convert them all to lists....adict.get(k) returns value associated with k.
+adict(k, alt) returns alt if adict(k) return None.

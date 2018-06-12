@@ -4,6 +4,7 @@ Lists, strings and tuples are ordered collections.
 Sets and Dictionaries - unordered collections. // hence will show that they don't support indexing.
 
 Lists an be initialized with repetition -- *, but be careful if assigning variables to these. Unexpected changes can occur.  
+LC with ifs: sqlist=[x*x for x in range(1,11) if x%2 != 0]
 
 Code: 
 myList = [1,2,3,4]

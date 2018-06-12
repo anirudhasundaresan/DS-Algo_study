@@ -1,4 +1,4 @@
-## Merge sort ##
+## Merge sort ## DIVIDE AND CONQUER APPROACH - LIKE Quicksort
 ## Complexity is O(nlogn): n for merging two halves of an array into one and logn for splitting an array into halves till the end.
 def merge_sort(alist):
 	print("Splitting", alist)

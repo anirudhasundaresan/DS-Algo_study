@@ -39,3 +39,8 @@ Some more mathematical set functions: union, intersection, issubset, clear, add 
 Dictionary? : uses {}. Use methods and operators as follows:
 adict.keys(), .values(), .items() -- returns a dict_item object, and use list() to convert them all to lists....adict.get(k) returns value associated with k.
 adict(k, alt) returns alt if adict(k) return None.
+
+### EXCEPTION HANDLING ### -- use try exception
+ValueError
+RuntimeError
+SyntaxError

@@ -183,7 +183,7 @@ print(evaluate(pt)) # prints out 45
 '''
 '''
 ##### Tree traversals ##### (Traversal algo works for trees with any no. of children, but here we look only at binary trees)
-Different order in which nodes can be traversed in a binary tree.
+Different order in which nodes can be traversed in a binary tree. These are all DFS algos. BFS uses Queue and DFS uses stacks.
 - preorder: root, left, right
 - inorder: left, root, right
 - postorder: left, right, root

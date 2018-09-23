@@ -1,14 +1,41 @@
-https://www.youtube.com/watch?v=OSGv2VnC0go
+References: 
+1. https://www.youtube.com/watch?v=OSGv2VnC0go
+2. http://treyhunner.com/2018/02/python-3-s-range-better-than-python-2-s-xrange/
+3. http://web.archive.org/web/20090209182018/http://immike.net/blog/2007/04/06/the-absolute-bare-minimum-every-programmer-should-know-about-regular-expressions/ --- RegEx stuff, if interested (no time to study that now).
 
-When looping backwards a list, use 'reversed'
+The first video is my Raymond Hettinger, and it contains some tips on using Python3, mainly his contributions. 
+
+- When looping backwards a list, use 'reversed': 
 for row in reversed(rows):
 	print(colors)
 
-use enumerate, better than using indices
-izip instead of zip
-sorted(list)
-sorted(list, reverse=True)
-sorted(list, key = len) if the list is made of words
+- Use enumerate, it is better than using indices
+- sorted(list) returns a list with sorted values, does not change the original list. 
+- list.sort() changes the original list; modifies in-place. 
+- sorted(list, reverse=True)
+- sorted(list, key = len), if the list is made of words
+
+- mylist = [*{*mylist}]; this is an arg style set expansion followed by an arg style list expansion
+This is equivalent to mylist = list(set(mylist)) # note that in this process, list will not be sorted anymore.
+
+** RANGE in Py3 **
+- range is a class in py3.
+- More dunder methods (ones with __ __  in their names) in py3, than in py2, thus adds to functionality of Py3.
+- If a=range(1,10,2) and b = range(1,10,2); a==a returns True and so does a==b, unlike py2. Here, py3 checks whether the start, stop and slices are same or not.
+a = range(1,10,2) --> a.start = 1; a.stop = 10; a.step = 2
+- range object in python supports splicing: range(10)[2:] --> range(2,10) and range(10)[3:8:-1] --> range(3,8,-1)
+- Py3 'in' operator is implemented using __contains__ method, which range uses and not used by xrange in py2.
+Thus, -1 in xrange(10000000) returns False after unpacking the list, but -1 in range() returns False immediately.
+- To invert a range in py3,
+a = range(1,20,2)
+b = -a # will return errors
+b = range(-a.start, -a.stop, -a.step) --> will return inverted list
+- In Py3, range object can accept integers of any type: long also, but not in py2, due to limitations on the int.
+
+
+
+
+
 
 read about iter - 2 argument form of iter -- takes in sentinel value
 
@@ -49,49 +76,6 @@ for name in names:
 	key=len(names)
 	d[key].append(name)
 
-
-
-
-From http://treyhunner.com/2018/02/python-3-s-range-better-than-python-2-s-xrange/ :
-
-mylist = [*{*mylist}]
-this is an arg style set expansion followed by an arg style list expansion
-
 zip, map, filter?
-range is a class in Py3.
 
-Talking about range function in Python 3.
-More dunder methods (ones with __ __  in their names) in py3, thus adds to functionality of Py3.
-
-If a=range(1,10,2)
-and b = range(1,10,2)
-a==a returns True and so does a==b, unlike Py2. Here, py3 check whether the start, stop and slices are same or not.
-
-a = range(1,10,2)
-a.start = 1
-a.stop = 10
-a.step = 2
-
-range object in python supports splicing: range(10)[2:] --> range(2,10)
-and range(10)[3:8:-1] --> range(3,8,-1)
-
-Py3 'in' operator is implemented using __contains__ method, which range uses and not xrange in py2.
-thus, -1 in xrange(10000000) returns False after unpacking the list, but -1 in range() returns False immediately.
-
-To invert a range in py3,
-a = range(1,20,2)
-b = -a # will return errors
-b = range(-a.start, -a.stop, -a.step) --> will return inverted list
-
-In PY3, range object can accept integers of any type: long also, not in Py2.due to limitations on the int.
-
-
-
-http://web.archive.org/web/20090209182018/http://immike.net/blog/2007/04/06/the-absolute-bare-minimum-every-programmer-should-know-about-regular-expressions/ --- RegEx stuff.
-
-https://skymind.ai/wiki/accuracy-precision-recall-f1
-https://www.toyota-ti.ac.jp/Lab/Denshi/COIN/people/yutaka.sasaki/F-measure-YS-26Oct07.pdf -- Interesting read on the F1 scores. 
-Yes, accuracy is a great measure but only when you have symmetric datasets where values of false positive and false negatives are almost same. 
-https://blog.exsilio.com/all/accuracy-precision-recall-f1-score-interpretation-of-performance-measures/
-Accuracy is not reliable when using imbalanced data sets.
-https://towardsdatascience.com/beyond-accuracy-precision-and-recall-3da06bea9f6c
+python -i examp.py

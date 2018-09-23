@@ -38,7 +38,11 @@ Main difference between lists and strings? :
 Lists are mutable. Changeable. Any index can be used to store something else. Strings are immutable, no item assignment in the middle of the string. Think of a physical string, can you cut out a portion and join the string 
 with another similar sized portion the same way? 
 
-What about tuples? They are similar to lists in terms of being able to store heterogeneous objects but they are *immutable*. They support slicing, but no item assignment.
+What about tuples? They are similar to lists in terms of being able to store heterogeneous objects but they are *immutable*. They support slicing, but no item assignment. ** Important: no item assignment! It is a read-only data structure. **
+You can unpack tuples also easily. 
+data = (3423, 324234, 234324)
+lat, long, angle = data 
+Also, when sorting a list of tuples: Python always looks at first values.
 
 Set?: Unordered collection of 0 or more immutable objects. Use {}. Even dict is used with {}. Use {} to mean unordered? 
 Operations of set are useful to note: &, |, -, <=, in, len.
@@ -48,6 +52,12 @@ Some more mathematical set functions: union, intersection, issubset, clear, add 
 Dictionary? : uses {}. Use methods and operators as follows:
 adict.keys(), .values(), .items() -- returns a dict_item object, and use list() to convert them all to lists....adict.get(k) returns value associated with k.
 adict(k, alt) returns alt if adict(k) return None.
+- How do you sort dictionaries? (based on their values?)
+a. You can convert each record into a tuple and sort based on the first values. 
+b. You can use the sorted function with the key function as a lamba function: sorted(dict, key=lambda k: dict[k])
+which is equivalent to:
+def func(k):
+	return dict[k]
 
 ### EXCEPTION HANDLING ### -- use try exception
 ValueError

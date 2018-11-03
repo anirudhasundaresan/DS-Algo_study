@@ -1,17 +1,20 @@
-References: 
+References:
 1. https://www.youtube.com/watch?v=OSGv2VnC0go
 2. http://treyhunner.com/2018/02/python-3-s-range-better-than-python-2-s-xrange/
 3. http://web.archive.org/web/20090209182018/http://immike.net/blog/2007/04/06/the-absolute-bare-minimum-every-programmer-should-know-about-regular-expressions/ --- RegEx stuff, if interested (no time to study that now).
 
-The first video is my Raymond Hettinger, and it contains some tips on using Python3, mainly his contributions. 
+The first video is by Raymond Hettinger, and it contains some tips on using Python3, mainly his contributions.
+Given a task to be done in Python, there is only one obvious way to do it.
 
-- When looping backwards a list, use 'reversed': 
+Here are some key points from the video:
+
+- When looping backwards a list, use 'reversed':
 for row in reversed(rows):
 	print(colors)
 
 - Use enumerate, it is better than using indices
-- sorted(list) returns a list with sorted values, does not change the original list. 
-- list.sort() changes the original list; modifies in-place. 
+- sorted(list) returns a list with sorted values, does not change the original list.
+- list.sort() changes the original list; modifies in-place.
 - sorted(list, reverse=True)
 - sorted(list, key = len), if the list is made of words
 
@@ -32,7 +35,23 @@ b = -a # will return errors
 b = range(-a.start, -a.stop, -a.step) --> will return inverted list
 - In Py3, range object can accept integers of any type: long also, but not in py2, due to limitations on the int.
 
+** DICTIONARY in Py3 **
+- To build a dictionary from 2 lists:
+d = dict(zip(names, colors))
+another example: d = dict(enumerate(names)) --> basically, whatever gives you tuples
 
+- for keys in dict: -->  this is iterating as it loops over the keys
+- for keys in dict.keys(): also can be done -->  this is mutating; creates a copy of the dictionary keys in a list ... so if you wanna change/ mutate the dictionary now go ahead
+- for keys in dict and then del dict[key] will give error since 'dict changed size during iteration'.
+- for key,value in d.items() --> d.items() makes a list
+
+
+
+
+
+
+- To run Python in interactive mode, run with '-i' flag.
+eg: python -i example.py
 
 
 
@@ -48,23 +67,6 @@ for block in iter(partial(f.read, 32), ''):
 In Python, there are else clauses for for loops as well.
 'else' of 'for' is equivalent to 'no break' statement
 
-Dictionary skills:
-for keys in dict: -->  this is iterating
-	loops over the keys
-
-for keys in dict.keys(): also can be done -->  this is mutating
-creates a copy of the dictionary keys in a list ... so if you wanna change/ mutate the dictionary now go ahead
-
-but keys in dict and then del dict[key] will give error
-
-for key,value in d.items() --> d.items() makes a list
-for key, value in d.iteritems() --> this makes an iterator
-
-building a dictionary from 2 lists:
-d = dict(izip(names, colors))
-another example:
-d = dict(enumerate(names)) --> basically, whatever gives you tuples
-
 counting with dictionaries:
 d = defaultdict(int) # note that int is being used without any argument ... a dictionary is init with all 0
 for color in colors:
@@ -78,4 +80,3 @@ for name in names:
 
 zip, map, filter?
 
-python -i examp.py

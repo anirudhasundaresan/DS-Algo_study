@@ -1,0 +1,187 @@
+References:
+1. https://www.youtube.com/watch?v=OSGv2VnC0go
+2. http://treyhunner.com/2018/02/python-3-s-range-better-than-python-2-s-xrange/
+3. http://web.archive.org/web/20090209182018/http://immike.net/blog/2007/04/06/the-absolute-bare-minimum-every-programmer-should-know-about-regular-expressions/ --- RegEx stuff, if interested (no time to study that now).
+
+The first video is by Raymond Hettinger, and it contains some tips on using Python3, mainly his contributions.
+Given a task to be done in Python, there is only one obvious way to do it.
+
+Here are some key points from the video:
+----------------------------------------
+
+Don't try to use indices all over the place; it is ugly.
+
+- When looping backwards a list, use 'reversed':
+    for row in reversed(rows):
+	    print(colors)
+
+- Zip function predates to even Lisp. Use it when looping over two lists.
+    for name, color in zip(names, colors):
+        print(name, color)
+    for namei, namej in zip(names, names[1:]): # to get consecutive elements as a tuple.
+        print(namei, namej)
+
+Zip uses a third list --> it generates a list made of tuples to point back to values from both the lists.
+Is this all running in the L1 cache? A cache miss is as expemsive as a floating point divide. Zip list might not fit into the cache.
+Use izip instead of zip (same syntax); iterators make python faster.
+
+- Use enumerate, it is better than using indices.
+
+- sorted(list) returns a list with sorted values, does not change the original list.
+- list.sort() changes the original list; modifies in-place.
+- sorted(list, reverse=True)
+- sorted(list, key = len), if the list is made of words
+
+About sentinel values and reading I/O --> https://amir.rachum.com/blog/2013/11/10/python-tips-iterate-with-a-sentinel-value/
+iter(set of values) - makes it into an iterable.
+
+- mylist = [*{*mylist}]; this is an arg style set expansion followed by an arg style list expansion
+This is equivalent to mylist = list(set(mylist)) # note that in this process, list will not be sorted anymore.
+
+
+- 'For' statements are implemented using an if-goto construct, under the hood. Thus, it makes sense for the 'for' loop to have an else clause, the same else clause of the 'if' embedded into the for. Thus, the 'else' means go to this after finishing the loop.
+    for i, value in enumerate(seq):
+        if value==tgt:
+            break
+    else:
+        return -1
+    return i
+
+'Else' = 'No-break'
+
+** RANGE in Py3 **
+- range is a class in py3.
+- More dunder methods (ones with __ __  in their names) in py3, than in py2, thus adds to functionality of Py3.
+- If a=range(1,10,2) and b = range(1,10,2); a==a returns True and so does a==b, unlike py2. Here, py3 checks whether the start, stop and slices are same or not.
+a = range(1,10,2) --> a.start = 1; a.stop = 10; a.step = 2
+- range object in python supports splicing: range(10)[2:] --> range(2,10) and range(10)[3:8:-1] --> range(3,8,-1)
+- Py3 'in' operator is implemented using __contains__ method, which range uses and not used by xrange in py2.
+Thus, -1 in xrange(10000000) returns False after unpacking the list, but -1 in range() returns False immediately.
+- To invert a range in py3,
+a = range(1,20,2)
+b = -a # will return errors
+b = range(-a.start, -a.stop, -a.step) --> will return inverted list
+- In Py3, range object can accept integers of any type: long also, but not in py2, due to limitations on the int.
+
+** DICTIONARY in Py3 **
+- To build a dictionary from 2 lists:
+d = dict(zip(names, colors))
+another example: d = dict(enumerate(names)) --> basically, whatever gives you tuples
+
+- for keys in dict: -->  this is iterating as it loops over the keys
+- for keys in dict.keys(): also can be done -->  this is when you want to mutate the dictionary; creates a copy of the dictionary keys in a list ... so if you wanna change/ mutate the dictionary now go ahead
+dic.keys() - makes a copy of all the keys and stores them into a list.
+- for keys in dict and then del dict[key] will give error since 'dict changed size during iteration'.
+- for key,value in d.items() --> d.items() makes a list : this method is called tuple unpacking.
+
+
+- counting with dictionaries:
+d = defaultdict(int) # note that int is being used without any argument ... a dictionary is init with all 0
+for color in colors:
+	d[color]+=1
+
+- grouping with dictionaries:
+d = defaultdict(list)
+# no need to check if key exists in dic or not since d = defaultdict(list)
+for name in names:
+	key=len(names)
+	d[key].append(name)
+
+- popitems() in dictionary usage:
+dic.popitem() removes an arbitrary item from the dictionary. It is atomic, so you don't have to use locks around it. It can be used between threads to pull out items from the dictionary.
+
+while d:
+    key, value = d.popitem()
+    print(key, value)
+
+
+- Clarify function calls with keyword arguments.
+twitter_search('@obama', False, 20, True) --> twitter_search('@obama', retweents=False, numtweets=20, popular=True)
+--> might make the code a bit slower but can make them readable.
+
+- Use named tuples instead of tuples for clarity.
+TestResults = namedtuple('TestResults', ['failed','attempted'])
+
+- Unpacking sequences:
+sys.argv is a list. So use sequence unpacking to get the items from that list, instead of writing:
+a = sys.argv[1]
+b = sys.argv[2] and so on.
+
+- Updating variables:
+-- do multiple inits: x,y = 0,1
+-- also, while exchanging and updating:
+t = y
+y = x + y
+x = t
+use this instead: x, y = y, x+y
+This means: do all the calculations on the right and only then, update LHS variables.
+
+- Use join() instead of adding strings together using for loops --> O(n2) = bad
+
+- When you have a list and would like to:
+del ls[0]
+ls.pop(0)
+ls.insert(0, 'hello')
+--Lists are wrong data structures here. Use deque() like this:
+names = deque(list)
+del names[0]
+names.popleft()
+names.appendleft('mark')
+
+
+Context managers:
+-----------------
+
+'with' is a context manager. It is a replacement for a try-finally or try-except construct.
+- Use 'with open' to open and close files.
+- Use 'with lock' to work with locks (init a lock, acquire a lock, release a lock)
+Old method:
+lock = threading.Lock() # make a lock
+lock.acquire()
+try:
+    print ---
+    print ---
+finally:
+    lock.release()
+
+New method:
+with lock:
+    print ---
+    print ---
+
+- Use 'with ignored' instead of checking if a file exists and then os.removing it.
+Old method:
+try:
+    os.remove('somefile.tmp')
+except OSError:
+    pass
+
+New method: (also takes care of race conditions)
+with ignored(OSError):
+    os.remove('somefile.tmp')
+
+- Changing between sys.stdouts while printing from functions?
+Use this instead:
+with open ('text_file.txt','w') as f:
+    with redirect_stdout(f):
+        help(pow)
+
+- To run Python in interactive mode, run with '-i' flag.
+eg: python -i example.py
+
+- Using generators:
+print sum(i**2 for i in range(10)) is faster than: print sum([i**2 for i in range(10)])
+# notice no square brackets.
+
+Things to read more about:
+--------------------------
+
+- Argument parser slide?
+
+- read about iter - 2 argument form of iter -- takes in sentinel value
+    'partial' - takes in many arguments and returns fewer arguments?
+blocks = []
+for block in iter(partial(f.read, 32), ''):
+	blocks.append(block)
+
+- Decorators and Context managers

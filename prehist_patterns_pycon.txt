@@ -1,0 +1,61 @@
+Stop using old patterns. This video will explain what all can be updated and how.
+https://www.youtube.com/watch?v=V5-JH23Vk0I
+
+1. 'in' keyword to be used more regularly.
+    - if x in set: O(1) operation
+    - check for an element in a dictionary using 'in'
+
+2. If you need to iterate over dictionary keys, and you don't need the values:
+    - no need to do: for key in dic.keys()
+    - just do: for key in dic
+
+3. keys = dic.keys() does not automatically create a list, it creates an iterator
+    - instead, do this: keys = list(dic)
+
+4. sets - unique values and fast lookup. Lookups in dictionaries are also O(1), so if you need to do lookups for a list, convert them to dictionary keys (with values 'None') and search using 'in'. Well, this was before sest came about. Now, use sets for the same purpose. Sets are still faster than dicts.
+
+5. if you want to loop over a sorted list, but we don't want to sort the list for any other purpose other than for iterating in an order, use the sorted as part of the 'for' loop.
+    - for x in sorted(os.environ):.... os.environ returns a list
+    - sorted can take in any sort of iterable, not just lists, but even sets, tuples, generators and dicts
+    - even better: use LC: [print(x) for x in sorted(os.environ)]
+    - sorted is preferred over using sort on a list unless you're absolutely sure that you're dealing with a list (sort is slightly faster with a list); also, list sort method sorts in-place.
+    - sorted() can be used with a function, that can be used to sort in a required manner. The function takes in the iterable items one by one and based on that, does the sorting, eg:
+        - another sorting pattern based on speed: vvs = sorted(vs, key=lambda a: a[1], reverse=True)
+
+6. Rich comparison dunder functions. __lt__, __le__, __ge__,  __ne__, etc.
+
+7. One line conditional expressions:
+    - result = blank_value if use_blank else default; (if test comes in the middle, hence a bit confusing)
+
+8. Resource handling: (try, except, finally)
+    - finally will run whether the exception occured or not
+    - so use it like this:
+        t = fp.readline()
+        try:
+            ----
+        except:
+            ---
+        finally:
+            ---
+    - Even better usage (use a context manager)
+        with open ... :
+            try:
+                ---
+            except:
+                ---
+            finally:
+                ---
+    - AssertRaises are also context managers in new Python (need to know what they are)
+
+9. Generators:
+    - def a_generator():
+        yield from another_generator() // some talk about co-routines, over my head: come back to it
+
+10. + vs. ''.join to combine strings:
+    - use ''.join always, but don't do premature optimizations, always test your code
+
+
+
+
+
+

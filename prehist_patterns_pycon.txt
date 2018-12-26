@@ -54,7 +54,7 @@ https://www.youtube.com/watch?v=V5-JH23Vk0I
 10. + vs. ''.join to combine strings:
     - use ''.join always, but don't do premature optimizations, always test your code
 
-
+11. Constants must be calculated outside the loop; and not everytime inside. Although some versions of python accommodate and optimize code even if the constant is calculated insid the loop.
 
 
 

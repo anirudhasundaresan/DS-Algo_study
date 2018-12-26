@@ -1,3 +1,5 @@
+# this program was written to replicate the Monty Python problem - it was really not intuitive when I initially heard the answer.
+
 import random
 # change the key of the rng every time this function is called
 

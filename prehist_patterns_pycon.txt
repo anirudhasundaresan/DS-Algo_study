@@ -12,7 +12,7 @@ https://www.youtube.com/watch?v=V5-JH23Vk0I
 3. keys = dic.keys() does not automatically create a list, it creates an iterator
     - instead, do this: keys = list(dic)
 
-4. sets - unique values and fast lookup. Lookups in dictionaries are also O(1), so if you need to do lookups for a list, convert them to dictionary keys (with values 'None') and search using 'in'. Well, this was before sest came about. Now, use sets for the same purpose. Sets are still faster than dicts.
+4. sets - unique values and fast lookup. Lookups in dictionaries are also O(1), so if you need to do lookups for a list, convert them to dictionary keys (with values 'None') and search using 'in'. Well, this was before sets came about. Now, use sets for the same purpose. Sets are still faster than dicts.
 
 5. if you want to loop over a sorted list, but we don't want to sort the list for any other purpose other than for iterating in an order, use the sorted as part of the 'for' loop.
     - for x in sorted(os.environ):.... os.environ returns a list
@@ -20,7 +20,7 @@ https://www.youtube.com/watch?v=V5-JH23Vk0I
     - even better: use LC: [print(x) for x in sorted(os.environ)]
     - sorted is preferred over using sort on a list unless you're absolutely sure that you're dealing with a list (sort is slightly faster with a list); also, list sort method sorts in-place.
     - sorted() can be used with a function, that can be used to sort in a required manner. The function takes in the iterable items one by one and based on that, does the sorting, eg:
-        - another sorting pattern based on speed: vvs = sorted(vs, key=lambda a: a[1], reverse=True)
+    - another sorting pattern based on speed: vvs = sorted(vs, key=lambda a: a[1], reverse=True)
 
 6. Rich comparison dunder functions. __lt__, __le__, __ge__,  __ne__, etc.
 

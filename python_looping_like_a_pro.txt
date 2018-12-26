@@ -1,0 +1,53 @@
+Looping like a Pro in Python:
+
+    - Tuple unpacking:
+        - x, y = (2, 3) — x gets 2 and y gets 3
+        - Forms basis of ‘enumerate’ while looping
+        - enumerate(list) returns an enumerator object that can be cast into list
+    - Always use these in the code:
+        - enumerate - adds indices to list values
+        - sorted - returns sorted copy of the list
+        - reversed - iterates over list backwards (does not reverse the list and operate forwards)
+        - range - iterates over numbers
+        - zip - combines list together - useful for creating dictionaries as well
+    - Generators:
+        - Used to improve complicated nested loops
+        - Separate iteration logic from loop body
+        - Another way to design iterables is using generators:
+
+            def grocery_list():
+               yield ‘milk’
+               yield ‘eggs’
+               yield ‘bread’
+
+            for food in grocery_list():
+                print(food) # prints out milk, eggs, bread
+
+    - Generators are used to simplify logic in a nested loop
+        - Eg: inside nested loops, we would like to break from the innermost loop, but this will get the logic to break from the outer loops as well. Use generators here.
+
+            def pairs(group):
+                for person1 in group:
+                    if person1.is_antisocial():
+                        continue
+                    for person2 in group:
+                        if person1==person2:
+                            continue
+                        if bad_match(person1, person2):
+                            return # it would have been a break in the case of nested loops
+                        yield person1, person2
+
+            for person1, person2 in pairs(group):
+                person1.greet(person2)
+
+    - Generators are evaluated lazily; only when requested
+        - x = range(1000000) is much faster than x = list(range(1000000))
+        - Thus, generators are really useful for refactoring nested loops
+        - They follow the same pattern: the iterable becomes the function call in the case of a for/ while statement
+        - Infinite generators are useful in the case of http requests
+        - Generators give performance improvements
+    - Itertools:
+        - itertools supports permutations and combinations
+            - itertools.combinations(group) # no repeats
+            - itertools.groupby
+
